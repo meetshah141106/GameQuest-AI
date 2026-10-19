@@ -1,0 +1,17 @@
+{
+    "id": "BUG-001",
+    "title": "Player Health Can Become Negative",
+    "description": "When a player takes damage exceeding their current health, the health value becomes negative instead of being clamped to zero.",
+    "source_file": "game_project/player.py",
+    "affected_function": "Player.take_damage",
+    "test_file": "test_health.py",
+    "reproduction_steps": [
+        "Create a Player with 100 health",
+        "Call take_damage(150)",
+        "Observe that health is -50 instead of 0"
+    ],
+    "expected_behavior": "Health should never fall below 0",
+    "actual_behavior": "Health becomes -50",
+    "severity": "high",
+    "bug_type": "boundary_condition"
+}

@@ -1,0 +1,18 @@
+{
+    "id": "BUG-002",
+    "title": "Inventory Exceeds Maximum Capacity",
+    "description": "The inventory accepts new items even when it has reached its maximum capacity, allowing the item count to exceed the limit.",
+    "source_file": "game_project/inventory.py",
+    "affected_function": "Inventory.add_item",
+    "test_file": "test_inventory.py",
+    "reproduction_steps": [
+        "Create an Inventory with capacity=3",
+        "Add 3 items successfully",
+        "Attempt to add a 4th item",
+        "Observe that the 4th item is accepted instead of being rejected"
+    ],
+    "expected_behavior": "add_item should return False when inventory is full",
+    "actual_behavior": "add_item returns True and adds the item beyond capacity",
+    "severity": "medium",
+    "bug_type": "boundary_condition"
+}

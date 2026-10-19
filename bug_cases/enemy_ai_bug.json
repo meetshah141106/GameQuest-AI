@@ -1,0 +1,18 @@
+{
+    "id": "BUG-003",
+    "title": "Enemy AI State Does Not Reset to Idle",
+    "description": "When the player moves beyond the enemy's detection radius, the enemy remains in PURSUING or ATTACKING state instead of returning to IDLE.",
+    "source_file": "game_project/enemy_ai.py",
+    "affected_function": "EnemyAI.update",
+    "test_file": "test_enemy_ai.py",
+    "reproduction_steps": [
+        "Create an EnemyAI with detection_radius=10",
+        "Move player within detection radius (state becomes PURSUING)",
+        "Move player far away (distance > 10)",
+        "Observe that state is still PURSUING instead of IDLE"
+    ],
+    "expected_behavior": "Enemy should return to IDLE when player is beyond detection radius",
+    "actual_behavior": "Enemy stays in PURSUING state indefinitely",
+    "severity": "medium",
+    "bug_type": "state_management"
+}
